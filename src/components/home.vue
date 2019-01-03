@@ -9,7 +9,7 @@
           <h2>电商管理系统</h2>
         </el-col>
         <el-col :span="1">
-          <a href="#" class="logout">退出</a>
+          <a href="#" class="logout" @click.prevent="logout()">退出</a>
         </el-col>
       </el-row>
     </el-header>
@@ -86,7 +86,29 @@
 </template>
 
 <script>
-export default {}
+export default {
+  // 验证登录状态
+  beforeCreate() {
+    if (!localStorage.getItem('token')) {
+      this.$router.push({
+        path: 'login'
+      })
+    }
+  },
+  // 退出登录
+  methods: {
+    logout() {
+      localStorage.clear();
+      this.$router.push({
+        path: 'login'
+      });
+      this.$message({
+        message: '退出成功',
+        type: 'success'
+      })
+    }
+  }
+}
 </script>
 
 <style>
@@ -95,12 +117,6 @@ export default {}
 }
 .header {
   background-color: #cccccc;
-}
-.aside {
-  /* background-color: chartreuse; */
-}
-.main {
-  background-color: brown;
 }
 .middle {
   text-align: center;

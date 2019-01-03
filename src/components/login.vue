@@ -58,7 +58,7 @@ export default {
 .form {
   width: 400px;
   background-color: #ffffff;
-  padding: 0 30px 30px 30px;
+  padding: 20px 30px 30px 30px;
   border-radius: 10px;
 }
 .form .btn {
