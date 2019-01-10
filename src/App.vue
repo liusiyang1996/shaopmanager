@@ -7,6 +7,16 @@
 <script>
 export default {
   name: 'App'
+  // methods: {
+  //   fn() {
+  //     var btn = document.getElementsByClassName('stye')
+  //     if (j.action === PAUSE) {
+  //       btn.style.display = 'none'
+  //     } else {
+  //       btn.style.display = 'block'
+  //     }
+  //   }
+  // }
 }
 </script>
 

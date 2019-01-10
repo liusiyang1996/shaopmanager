@@ -10,6 +10,8 @@ import '@/assets/index.css'
 import http from './plugins/http'
 // 引入moment
 import moment from 'moment'
+// 引入面包屑组件
+import bread from '@/components/bread.vue'
 
 // 定义过滤器 处理日期格式
 Vue.filter('fmtDate', function (value) {
@@ -18,6 +20,9 @@ Vue.filter('fmtDate', function (value) {
 // 使用Vue插件
 Vue.use(ElementUI)
 Vue.use(http)
+
+// 注册全局组件
+Vue.component(bread.name, bread)
 
 // 生产模式下禁止报错
 Vue.config.productionTip = false
