@@ -8,6 +8,10 @@ import home from '@/components/home.vue'
 import users from '@/components/users.vue'
 import rights from '@/components/rights.vue'
 import roles from '@/components/roles.vue'
+import goodsList from '@/components/goodslist.vue'
+import goodsAdd from '@/components/goodsAdd.vue'
+import params from '@/components/params.vue'
+import goodsCate from '@/components/goodscate.vue'
 
 Vue.use(Router)
 
@@ -33,6 +37,26 @@ const router = new Router({
           name: 'roles',
           path: '/roles',
           component: roles
+        },
+        {
+          name: 'goodsList',
+          path: '/goods',
+          component: goodsList
+        },
+        {
+          name: 'goodsadd',
+          path: '/goodsAdd',
+          component: goodsAdd
+        },
+        {
+          name: 'params',
+          path: '/params',
+          component: params
+        },
+        {
+          name: 'goodsCate',
+          path: '/categories',
+          component: goodsCate
         }
       ]
     },
@@ -53,10 +77,10 @@ router.beforeEach((to, from, next) => {
         name: 'login'
       })
       Message.warning('请先登录')
-    }else {
+    } else {
       next()
     }
-  }else {
+  } else {
     next()
   }
 })
