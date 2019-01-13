@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import { Message } from 'element-ui'
 // Vue插件是包含一个公开方法install的对象
 // 将axios变为vue的插件，使其能够应用vue.use()方法
 const http = {}
@@ -17,6 +18,20 @@ http.install = function (Vue) {
     // 对请求错误做些什么
     return Promise.reject(error)
   })
+  // 统一设置响应拦截器
+  Axios.interceptors.response.use(function (response) {
+    // 对响应数据做点什么
+    console.log('lanjieqi1')
+    console.log(response)
+    const {data: {meta: {msg, status}}} = response
+    if (status !== 201 && status !== 200) {
+      Message.warning(msg)
+    }
+    return response;
+  }, function (error) {
+    // 对响应错误做点什么
+    return Promise.reject(error);
+  });
   // 为Vue实例挂载axios
   Vue.prototype.$http = Axios
 }

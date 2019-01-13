@@ -20,7 +20,7 @@
       <el-button type="primary" @click="addListShow()">添加用户</el-button>
     </div>
     <!-- 表格 -->
-    <el-table :data="tableData" style="width: 100%" class="table">
+    <el-table :data="tableData" style="width: 100%" class="table" v-loading="loading">
       <el-table-column prop="id" label="#" width="100"></el-table-column>
       <el-table-column prop="username" label="姓名" width="140"></el-table-column>
       <el-table-column prop="email" label="邮箱" width="160"></el-table-column>
@@ -142,6 +142,8 @@
 export default {
   data () {
     return {
+      // 加载动画
+      loading: true,
       // 用户信息数据
       tableData: [],
       // 搜索栏数据
@@ -180,10 +182,6 @@ export default {
   methods: {
     // 获取用户列表
     async getListData () {
-      // 为请求设置token认证
-      const AUTH_TOKEN = localStorage.getItem('token')
-      this.$http.defaults.headers.common['Authorization'] = AUTH_TOKEN
-
       const res = await this.$http.get(
         `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${
           this.pagesize
@@ -213,6 +211,7 @@ export default {
         })
         this.tableData = users
         this.total = total
+        this.loading = false
       } else {
         this.$message({
           message: msg,

@@ -73,106 +73,106 @@
 
 <script>
 export default {
-  created() {
-    this.getTypes();
+  created () {
+    this.getTypes()
   },
-  data() {
+  data () {
     return {
       form: {},
       options: [],
       type: [1, 3, 6],
       props: {
-        label: "cat_name",
-        value: "cat_id",
-        children: "children"
+        label: 'cat_name',
+        value: 'cat_id',
+        children: 'children'
       },
-      active: "1",
+      active: '1',
       pra: [],
       praStatic: [],
       inputVisible: false,
-      inputValue: ""
-    };
+      inputValue: ''
+    }
   },
   methods: {
     // 获取级联选择器数据
-    async getTypes() {
-      const res = await this.$http.get(`categories`);
-      this.options = res.data.data;
+    async getTypes () {
+      const res = await this.$http.get(`categories`)
+      this.options = res.data.data
     },
     // tab栏被点击时触发
-    handleClick() {
-      this.getPra();
+    handleClick () {
+      this.getPra()
     },
     // 级联选择器改变时触发
-    handleChange() {
-      this.getPra();
+    handleChange () {
+      this.getPra()
     },
     // 获取参数
-    async getPra() {
+    async getPra () {
       // 动态
-      if (this.active === "1" && this.type.length === 3) {
+      if (this.active === '1' && this.type.length === 3) {
         const res = await this.$http.get(
           `categories/${this.type[2]}/attributes?sel=many`
-        );
-        this.pra = res.data.data;
-        console.log(this.pra);
+        )
+        this.pra = res.data.data
+        console.log(this.pra)
         // 将动态参数字符串转化为数组
         this.pra.forEach((item, i) => {
           item.attr_vals =
-            item.attr_vals.length === 0 ? [] : item.attr_vals.split(",");
-        });
+            item.attr_vals.length === 0 ? [] : item.attr_vals.split(',')
+        })
       }
       // 静态
-      if (this.active === "2" && this.type.length === 3) {
+      if (this.active === '2' && this.type.length === 3) {
         const res = await this.$http.get(
           `categories/${this.type[2]}/attributes?sel=only`
-        );
-        this.praStatic = res.data.data;
-        console.log(this.praStatic);
+        )
+        this.praStatic = res.data.data
+        console.log(this.praStatic)
       }
     },
-    async handleClose(attr, tag) {
-      attr.attr_vals.splice(attr.attr_vals.indexOf(tag), 1);
+    async handleClose (attr, tag) {
+      attr.attr_vals.splice(attr.attr_vals.indexOf(tag), 1)
       const putData = {
         attr_name: attr.attr_name,
         attr_sel: attr.attr_sel,
-        attr_vals: attr.attr_vals.join(",")
-      };
+        attr_vals: attr.attr_vals.join(',')
+      }
       const res = await this.$http.put(
         `categories/${this.type[2]}/attributes/${attr.attr_id}`,
         putData
-      );
-      console.log(res);
+      )
+      console.log(res)
     },
 
-    showInput() {
-      this.inputVisible = true;
+    showInput () {
+      this.inputVisible = true
       this.$nextTick(_ => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
+        this.$refs.saveTagInput.$refs.input.focus()
+      })
     },
 
-    async handleInputConfirm(attr) {
-      let inputValue = this.inputValue;
+    async handleInputConfirm (attr) {
+      let inputValue = this.inputValue
       if (inputValue) {
-        attr.attr_vals.push(inputValue);
+        attr.attr_vals.push(inputValue)
         const putData = {
           attr_name: attr.attr_name,
           attr_sel: attr.attr_sel,
-          attr_vals: attr.attr_vals.join(",")
-        };
+          attr_vals: attr.attr_vals.join(',')
+        }
         const res = await this.$http.put(
           `categories/${this.type[2]}/attributes/${attr.attr_id}`,
           putData
-        );
-        console.log(res);
+        )
+        console.log(res)
       }
-      this.inputVisible = false;
-      this.inputValue = "";
-      console.log(attr.attr_vals);
+      this.inputVisible = false
+      this.inputValue = ''
+      console.log(attr.attr_vals)
     }
   }
-};
+}
 </script>
 
 <style>
