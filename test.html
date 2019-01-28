@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <button @click="fn()">点击</button>
+        <p ref="p">{{num}}</p>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#main',
+            data: {
+                num: 1
+            },
+            methods: {
+                fn() {
+                    this.num++
+                    // 在num++的过程中，数据和视图进行了更新，但真实dom并没有渲染出来
+                    // console.log(this.$refs.p.innerText)
+                    this.$nextTick(() => {
+                        console.log(this.$refs.p.innerText)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

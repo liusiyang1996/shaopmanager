@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .box {
   background-color: aquamarine;
   height: 100%;

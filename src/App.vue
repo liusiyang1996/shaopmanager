@@ -10,7 +10,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  /* scoped: 使style中的代码只对当前组件生效 */
   #app {
     height: 100%
   }

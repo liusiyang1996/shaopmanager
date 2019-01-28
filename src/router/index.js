@@ -1,23 +1,24 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import { Message } from 'element-ui'
 
 // 导入组件--@代表src文件夹
-import login from '@/components/login.vue'
-import home from '@/components/home.vue'
-import users from '@/components/users.vue'
-import rights from '@/components/rights.vue'
-import roles from '@/components/roles.vue'
-import goodsList from '@/components/goodslist.vue'
-import goodsAdd from '@/components/goodsAdd.vue'
-import params from '@/components/params.vue'
-import goodsCate from '@/components/goodscate.vue'
-import order from '@/components/order.vue'
-import reports from '@/components/reports.vue'
+// 实现路由懒加载
+const login = () => import('@/components/login.vue')
+const home = () => import('@/components/home.vue')
+const users = () => import('@/components/users.vue')
+const rights = () => import('@/components/rights.vue')
+const roles = () => import('@/components/roles.vue')
+const goodsList = () => import('@/components/goodslist.vue')
+const goodsAdd = () => import('@/components/goodsAdd.vue')
+const params = () => import('@/components/params.vue')
+const goodsCate = () => import('@/components/goodscate.vue')
+const order = () => import('@/components/order.vue')
+const reports = () => import('@/components/reports.vue')
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const router = new Router({
+const router = new VueRouter({
   routes: [
     {
       name: 'home',

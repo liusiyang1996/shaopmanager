@@ -14,7 +14,7 @@
 
     <!-- 表格 -->
   <el-table
-      height="450px"
+      height="400px"
       border
       stripe
       :data="list"
@@ -113,7 +113,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .searchArea {
   margin-top: 10px;
   margin-bottom: 10px;

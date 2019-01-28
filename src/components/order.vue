@@ -56,35 +56,35 @@
 import catlist from '@/assets/city_data2017_element.js'
 
 export default {
-  data() {
+  data () {
     return {
       list: [],
       dialogFormVisible: false,
       form: {
-        address: ""
+        address: ''
       },
       // 级联选择器要绑定的数据
 
       catlist: [],
       selectedOptions: []
-    };
+    }
   },
-  created() {
-    this.getData();
+  created () {
+    this.getData()
   },
   methods: {
-    async getData() {
-      const res = await this.$http.get(`orders?pagenum=1&pagesize=10`);
+    async getData () {
+      const res = await this.$http.get(`orders?pagenum=1&pagesize=10`)
       // console.log(res);
-      this.list = res.data.data.goods;
+      this.list = res.data.data.goods
     },
-    showEditdia() {
-      this.catlist = catlist;
-      this.dialogFormVisible = true;
+    showEditdia () {
+      this.catlist = catlist
+      this.dialogFormVisible = true
     }
   }
-};
+}
 </script>
 
-<style>
+<style scoped>
 </style>

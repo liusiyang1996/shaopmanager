@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/index'
 // 引入element-ui
-import ElementUI from 'element-ui'
+import ELEMENT from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 引入公共样式文件
 import '@/assets/index.css'
@@ -18,7 +18,7 @@ Vue.filter('fmtDate', function (value) {
   return moment(value).format('YYYY-MM-DD')
 })
 // 使用Vue插件
-Vue.use(ElementUI)
+Vue.use(ELEMENT)
 Vue.use(http)
 
 // 注册全局组件

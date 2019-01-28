@@ -24,6 +24,15 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  // 配置cdn（默认使用node_modules的本地文件) 使其通过连接加载 key:包名 value:源码暴漏在全局中的变量名
+  externals: {
+    axios: "axios",
+    echarts: "echarts",
+    'element-ui': "ELEMENT",
+    moment: "moment",
+    vue: "Vue",
+    'vue-router': "VueRouter"
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
